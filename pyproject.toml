@@ -1,0 +1,20 @@
+[tool.poetry]
+name = "usermanagementservice"
+version = "0.1.0"
+description = "User management service"
+authors = ["Alexander Rusakevich <mr.alexander.rusakevich@gmail.com>"]
+license = "GPLv3"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+fastapi = "^0.115.12"
+alembic = "^1.16.1"
+uvicorn = "^0.34.2"
+redis = "^6.1.0"
+pydantic-settings = "^2.9.1"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
