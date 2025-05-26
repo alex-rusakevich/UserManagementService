@@ -7,6 +7,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from app.app_layer.errors.to_app import add_exceptions
 from app.infra.database_conntection import get_redis_instance
 from app.infra.services.redis import RedisService
+from app.api.routes.api import api_router
 
 
 async def check_redis():
@@ -23,7 +24,9 @@ async def lifespan(application: FastAPI):
 
 def get_application() -> FastAPI:
     application = FastAPI(lifespan=lifespan)
-    # application.include_router(api_router)
+
+    application.include_router(api_router)
+
     application.add_middleware(
         CORSMiddleware,
         allow_origins=[],
@@ -36,6 +39,10 @@ def get_application() -> FastAPI:
     return application
 
 
-if __name__ == "__main__":
+def main():
     app = get_application()
     uvicorn.run(app, host="0.0.0.0", port=8083)
+
+
+if __name__ == "__main__":
+    main()

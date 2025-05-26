@@ -15,6 +15,12 @@ redis = "^6.1.0"
 pydantic-settings = "^2.9.1"
 
 
+[tool.poetry.group.dev.dependencies]
+poethepoet = "^0.34.0"
+
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
+
+[tool.poe.tasks]
+dev.script = "app.main:main"
