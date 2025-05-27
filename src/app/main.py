@@ -8,6 +8,15 @@ from app.app_layer.errors.to_app import add_exceptions
 from app.infra.database_conntection import get_redis_instance
 from app.infra.services.redis import RedisService
 from app.api.routes.api import api_router
+from app.config import get_settings
+
+from app.infra.services.s3 import S3Service
+from app.infra.database_conntection import get_aws_client
+
+
+async def create_buckets():
+    s3_service = S3Service(get_aws_client, get_settings().aws)
+    await s3_service.service_create_bucket()
 
 
 async def check_redis():
@@ -19,6 +28,7 @@ async def check_redis():
 @asynccontextmanager
 async def lifespan(application: FastAPI):
     await check_redis()
+    await create_buckets()
     yield
 
 

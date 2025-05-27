@@ -15,10 +15,13 @@ redis = "^6.1.0"
 pydantic-settings = "^2.9.1"
 asyncpg = "^0.30.0"
 psycopg2-binary = "^2.9.10"
+aioboto3 = "^14.3.0"
+types-aioboto3 = { extras = ["full"], version = "^14.3.0" }
 
 
 [tool.poetry.group.dev.dependencies]
 poethepoet = "^0.34.0"
+types-aioboto3 = { extras = ["full"], version = "^14.3.0" }
 
 [build-system]
 requires = ["poetry-core"]
@@ -27,4 +30,5 @@ build-backend = "poetry.core.masonry.api"
 [tool.poe.tasks]
 serve.script = "app.main:main"
 dev.script = "app.main:dev"
-docker = "docker-compose up --build -d app"
+docker-up = "sudo docker-compose up --build app"
+docker-down = "sudo docker-compose down"
