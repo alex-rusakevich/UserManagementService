@@ -13,6 +13,8 @@ alembic = "^1.16.1"
 uvicorn = "^0.34.2"
 redis = "^6.1.0"
 pydantic-settings = "^2.9.1"
+asyncpg = "^0.30.0"
+psycopg2-binary = "^2.9.10"
 
 
 [tool.poetry.group.dev.dependencies]
@@ -23,4 +25,6 @@ requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
 
 [tool.poe.tasks]
-dev.script = "app.main:main"
+serve.script = "app.main:main"
+dev.script = "app.main:dev"
+docker = "docker-compose up --build -d app"

@@ -41,7 +41,12 @@ def get_application() -> FastAPI:
 
 def main():
     app = get_application()
-    uvicorn.run(app, host="0.0.0.0", port=8083)
+    uvicorn.run(app, host="0.0.0.0", port=8000)
+
+
+def dev():
+    app = get_application()
+    uvicorn.run(app, host="0.0.0.0", port=8000, reload=True)
 
 
 if __name__ == "__main__":

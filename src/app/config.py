@@ -1,26 +1,30 @@
 from functools import lru_cache
-from pydantic_settings import BaseSettings
+import os
+from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
 class RedisConfig(BaseSettings):
     redis_host: str = "localhost"
     redis_port: str = "6379"
 
+    model_config = SettingsConfigDict(env_file=".env", extra="ignore")
+
 
 class DatabaseConfig(BaseSettings):
-    pg_password: str = "password"
-    pg_db: str = "user_management_service_db"
-    pg_port: str = "5432"
-    pg_host: str = "localhost"
-    pg_user: str = "user"
+    pg_password: str = os.getenv("POSTGRES_PASSWORD", "password")
+    pg_db: str = os.getenv("POSTGRES_DB", "user_management_service_db")
+    pg_port: str = os.getenv("POSTGRES_PORT", "5432")
+    pg_host: str = os.getenv("POSTGRES_HOST", "localhost")
+    pg_user: str = os.getenv("POSTGRES_USER", "postgres")
+
+    model_config = SettingsConfigDict(env_file=".env", extra="ignore")
 
 
 class BaseApplicationSettings(BaseSettings):
     redis: RedisConfig = RedisConfig()
     db: DatabaseConfig = DatabaseConfig()
 
-    class Config:
-        env_file = ".env"
+    model_config = SettingsConfigDict(env_file=".env", extra="ignore")
 
 
 @lru_cache
