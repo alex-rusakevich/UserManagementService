@@ -12,6 +12,7 @@ from app.config import get_settings
 
 from app.infra.services.s3 import S3Service
 from app.infra.database_conntection import get_aws_client
+from app.infra.services.ses import SESService
 
 
 async def create_buckets():
@@ -25,9 +26,15 @@ async def check_redis():
     await redis_service.ping()
 
 
+async def verify_email():
+    ses_service = SESService(get_aws_client, get_settings().aws)
+    await ses_service.verify_email()
+
+
 @asynccontextmanager
 async def lifespan(application: FastAPI):
     await check_redis()
+    await verify_email()
     await create_buckets()
     yield
 
