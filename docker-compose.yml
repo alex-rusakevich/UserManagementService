@@ -18,6 +18,8 @@ services:
         volumes:
             - postgres_data:/var/lib/postgresql/data
             - ./postgres_volume/var/run/docker.sock:/var/run/docker.sock
+        networks:
+            - backend
 
     localstack:
         image: localstack/localstack:latest
@@ -33,6 +35,8 @@ services:
             - "4566:4566"
         volumes:
             - ./localstack_volume/var/run/docker.sock:/var/run/docker.sock
+        networks:
+            - backend
 
     redis:
         image: redis:7.2-alpine
@@ -42,6 +46,8 @@ services:
             - "6379:6379"
         volumes:
             - redis_data:/data
+        networks:
+            - backend
 
     app:
         build:
@@ -57,10 +63,15 @@ services:
             - localstack
         ports:
             - "8000:8000"
-        command: sh -c "poetry run alembic upgrade head && poetry run app/main.py"
+        command: sh -c "poetry run alembic upgrade head && poetry run python app/main.py"
+        networks:
+            - backend
 
 volumes:
     postgres_data:
     redis_data:
 
 
+networks:
+    backend:
+        driver: bridge
