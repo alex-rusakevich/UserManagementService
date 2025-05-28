@@ -25,6 +25,10 @@ python-multipart = "^0.0.20"
 poethepoet = "^0.34.0"
 types-aioboto3 = { extras = ["full"], version = "^14.3.0" }
 
+
+[tool.poetry.group.test.dependencies]
+pytest = "^8.3.5"
+
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
@@ -34,3 +38,5 @@ serve.script = "app.main:main"
 dev.script = "app.main:dev"
 docker-up = "sudo docker-compose up --build app"
 docker-down = "sudo docker-compose down"
+docker-test-up = "sudo docker-compose -f docker-compose.test.yml up --build app"
+docker-test-down = "sudo docker-compose -f docker-compose.test.yml down"

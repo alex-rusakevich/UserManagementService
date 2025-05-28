@@ -6,6 +6,7 @@ RUN pip install "poetry==$POETRY_VERSION"
 
 COPY pyproject.toml poetry.lock* ./
 RUN poetry install --no-root --no-dev
+RUN poetry install --no-root --only test
 
 ADD ./src /app/code
 WORKDIR /app/code
