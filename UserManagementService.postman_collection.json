@@ -1,0 +1,196 @@
+{
+	"info": {
+		"_postman_id": "01979669-517f-496e-8ebd-fd349586c78a",
+		"name": "UserManagementService",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "45198408"
+	},
+	"item": [
+		{
+			"name": "Register",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "Alex",
+							"type": "text"
+						},
+						{
+							"key": "surname",
+							"value": "Ivanov",
+							"type": "text"
+						},
+						{
+							"key": "username",
+							"value": "alex",
+							"type": "text"
+						},
+						{
+							"key": "phone_number",
+							"value": "+3752911112233",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "alex@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "12345678",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "0.0.0.0:8000/auth/signup",
+					"host": [
+						"0",
+						"0",
+						"0",
+						"0"
+					],
+					"port": "8000",
+					"path": [
+						"auth",
+						"signup"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"login\":\"alex\",\n  \"password\":\"12345678\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "0.0.0.0:8000/auth/login",
+					"host": [
+						"0",
+						"0",
+						"0",
+						"0"
+					],
+					"port": "8000",
+					"path": [
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Who Am I",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "",
+						"value": "",
+						"type": "text"
+					},
+					{
+						"key": "Access-Token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFsZXgiLCJ1c2VyX2lkIjoiOTNmYTA4MDctYmMyMS00MDFhLWI0ZTQtYzJiMTJhM2NhYmE4IiwiZ3JvdXBfaWQiOm51bGwsInJvbGUiOiJ1c2VyIiwic2NvcGUiOiJhY2Nlc3MiLCJleHBpcmVzIjoiMjAyNS0wNS0yOFQwOTo1NzoyMi40MzcxNDUifQ.WHKLp670SRJ1fAgzPnT0XcMaBAjTnEI-xYwueetxavc",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "0.0.0.0:8000/user/me",
+					"host": [
+						"0",
+						"0",
+						"0",
+						"0"
+					],
+					"port": "8000",
+					"path": [
+						"user",
+						"me"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Change Last Name",
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Access-Token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFsZXgiLCJ1c2VyX2lkIjoiOTNmYTA4MDctYmMyMS00MDFhLWI0ZTQtYzJiMTJhM2NhYmE4IiwiZ3JvdXBfaWQiOm51bGwsInJvbGUiOiJ1c2VyIiwic2NvcGUiOiJhY2Nlc3MiLCJleHBpcmVzIjoiMjAyNS0wNS0yOFQwOTo1NzoyMi40MzcxNDUifQ.WHKLp670SRJ1fAgzPnT0XcMaBAjTnEI-xYwueetxavc",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"surname\": \"Petrov\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "0.0.0.0:8000/user/me",
+					"host": [
+						"0",
+						"0",
+						"0",
+						"0"
+					],
+					"port": "8000",
+					"path": [
+						"user",
+						"me"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Me",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Access-Token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFsZXgiLCJ1c2VyX2lkIjoiOTNmYTA4MDctYmMyMS00MDFhLWI0ZTQtYzJiMTJhM2NhYmE4IiwiZ3JvdXBfaWQiOm51bGwsInJvbGUiOiJ1c2VyIiwic2NvcGUiOiJhY2Nlc3MiLCJleHBpcmVzIjoiMjAyNS0wNS0yOFQwOTo1NzoyMi40MzcxNDUifQ.WHKLp670SRJ1fAgzPnT0XcMaBAjTnEI-xYwueetxavc",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "0.0.0.0:8000/user/me",
+					"host": [
+						"0",
+						"0",
+						"0",
+						"0"
+					],
+					"port": "8000",
+					"path": [
+						"user",
+						"me"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
