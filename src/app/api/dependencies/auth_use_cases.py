@@ -12,10 +12,10 @@ from app.app_layer.use_cases.auth import (
     PasswordService,
     RefreshTokenUseCase,
     ResetPasswordConfirmUseCase,
+    ResetPasswordUseCase,
     SignupUseCase,
 )
 from app.infra.services.ses import SESService
-from app.api.routes.auth import ResetPasswordUseCase
 from app.api.dependencies.clients.security_services import get_token_service
 from app.infra.services.jwt import TokenService
 from app.infra.services.redis import RedisService
