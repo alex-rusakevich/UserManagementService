@@ -6,8 +6,9 @@ from app.app_layer.use_cases.security import (
     SecurityPermissionService,
 )
 from app.infra.repositories.sqla.user import UserRepository
-from src.app.config import get_settings
-from src.app.infra.services.jwt import TokenService
+from app.app_layer.use_cases.auth import PasswordService
+from app.config import get_settings
+from app.infra.services.jwt import TokenService
 
 
 def get_token_service():
@@ -27,3 +28,7 @@ def get_security_check_me_service(
     token_service: TokenService = Depends(get_token_service),
 ) -> SecurityCheckMeService:
     return SecurityCheckMeService(user_repo, token_service)
+
+
+def get_password_service():
+    return PasswordService(get_settings().password)
